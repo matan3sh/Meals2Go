@@ -6,10 +6,10 @@ export default function App() {
   return (
     <>
       <SafeAreaView style={styles.container}>
-        <View style={styles.searchContainer}>
+        <View style={styles.search}>
           <Text>search</Text>
         </View>
-        <View style={styles.listContainer}>
+        <View style={styles.list}>
           <Text>list</Text>
         </View>
       </SafeAreaView>
@@ -23,6 +23,13 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: StatusBar.currentHeight,
   },
-  searchContainer: { padding: 16, backgroundColor: "green" },
-  listContainer: { flex: 1, padding: 16, backgroundColor: "blue" },
+  search: {
+    padding: 16,
+    backgroundColor: "green",
+  },
+  list: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: "blue",
+  },
 });
