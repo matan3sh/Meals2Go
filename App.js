@@ -15,7 +15,7 @@ import { theme } from "./src/infrastructure/theme";
 import { SafeArea } from "./src/components/utility/SafeArea";
 import RestaurantsScreen from "./src/features/restaurants/screens/RestaurantsScreen";
 
-import { Ionicons, FontAwesome } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -30,6 +30,22 @@ const MapScreen = () => (
   </SafeArea>
 );
 
+const TAB_ICON = {
+  Restaurants: "md-restaurant",
+  Map: "md-map",
+  Settings: "md-settings",
+};
+
+const createScreenOptions = ({ route }) => {
+  const iconName = TAB_ICON[route.name];
+  return {
+    tabBarIcon: ({ size, color }) => (
+      <Ionicons name={iconName} size={size} color={color} />
+    ),
+    headerShown: false,
+  };
+};
+
 export default function App() {
   const [oswaldLoaded] = useOswald({ Oswald_400Regular });
   const [latoLoaded] = useLato({ Lato_400Regular });
@@ -43,50 +59,14 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <NavigationContainer>
           <Tab.Navigator
-            screenOptions={{
-              headerShown: false,
-              tabBarActiveTintColor: "black",
-              tabBarInactiveTintColor: "grey",
+            screenOptions={createScreenOptions}
+            tabBarOptions={{
+              activeTintColor: "tomato",
+              inactiveTintColor: "gray",
             }}>
-            <Tab.Screen
-              name="Restaurants"
-              component={RestaurantsScreen}
-              options={{
-                tabBarIcon: ({ focused, color }) => (
-                  <Ionicons
-                    name="restaurant"
-                    size={focused ? 30 : 25}
-                    color="black"
-                  />
-                ),
-              }}
-            />
-            <Tab.Screen
-              name="Map"
-              component={MapScreen}
-              options={{
-                tabBarIcon: ({ focused, color }) => (
-                  <FontAwesome
-                    name="map-marker"
-                    size={focused ? 30 : 25}
-                    color="black"
-                  />
-                ),
-              }}
-            />
-            <Tab.Screen
-              name="Settings"
-              component={SettingsScreen}
-              options={{
-                tabBarIcon: ({ focused, color }) => (
-                  <Ionicons
-                    name="settings"
-                    size={focused ? 30 : 25}
-                    color="black"
-                  />
-                ),
-              }}
-            />
+            <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
+            <Tab.Screen name="Map" component={MapScreen} />
+            <Tab.Screen name="Settings" component={SettingsScreen} />
           </Tab.Navigator>
         </NavigationContainer>
       </ThemeProvider>

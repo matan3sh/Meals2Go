@@ -2,6 +2,7 @@
   "parser": "babel-eslint",
   "extends": "@react-native-community",
   "rules": {
-    "quotes": [2, "double", { "avoidEscape": true }]
+    "quotes": [2, "double", { "avoidEscape": true }],
+    "jsxBracketSameLine": true
   }
 }
