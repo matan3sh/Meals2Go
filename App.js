@@ -17,8 +17,6 @@ import RestaurantsScreen from "./src/features/restaurants/screens/RestaurantsScr
 
 import { Ionicons } from "@expo/vector-icons";
 
-import { restaurantsRequest } from "./src/services/restaurants/restaurantsService";
-
 const Tab = createBottomTabNavigator();
 
 const SettingsScreen = () => (
