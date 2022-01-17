@@ -5,7 +5,6 @@ import React, {
   useMemo,
   useContext,
 } from "react";
-
 import { restaurantsRequest, restaurantsTransform } from "./restaurantsService";
 
 export const RestaurantsContext = createContext();

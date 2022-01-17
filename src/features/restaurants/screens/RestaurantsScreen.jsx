@@ -27,7 +27,6 @@ const LoadingContainer = styled(View)`
 
 const RestaurantsScreen = () => {
   const { restaurants, isLoading, error } = useRestaurants();
-  console.log(restaurants);
 
   return (
     <SafeArea>
