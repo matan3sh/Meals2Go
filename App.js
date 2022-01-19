@@ -1,9 +1,6 @@
 import React from "react";
-import { Text } from "react-native";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { ThemeProvider } from "styled-components/native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import {
   useFonts as useOswald,
@@ -12,51 +9,10 @@ import {
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 
 import { theme } from "./src/infrastructure/theme";
-import { SafeArea } from "./src/components/utility/SafeArea";
+import { Navigation } from "./src/infrastructure/navigation";
 
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurantsContext";
 import { LocationContextProvider } from "./src/services/location/locationContext";
-
-import RestaurantsScreen from "./src/features/restaurants/screens/RestaurantsScreen";
-
-import { Ionicons } from "@expo/vector-icons";
-
-const Tab = createBottomTabNavigator();
-
-const SettingsScreen = () => (
-  <SafeArea>
-    <Text>Settings Screen</Text>
-  </SafeArea>
-);
-const MapScreen = () => (
-  <SafeArea>
-    <Text>Map Screen</Text>
-  </SafeArea>
-);
-
-const TAB_ICON = {
-  Restaurants: "md-restaurant",
-  Map: "md-map",
-  Settings: "md-settings",
-};
-
-const createScreenOptions = ({ route }) => {
-  const iconName = TAB_ICON[route.name];
-  return {
-    tabBarIcon: ({ size, color }) => (
-      <Ionicons name={iconName} size={size} color={color} />
-    ),
-    headerShown: false,
-    tabBarActiveTintColor: "tomato",
-    tabBarInactiveTintColor: "gray",
-    tabBarStyle: [
-      {
-        display: "flex",
-      },
-      null,
-    ],
-  };
-};
 
 export default function App() {
   const [oswaldLoaded] = useOswald({ Oswald_400Regular });
@@ -71,13 +27,7 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <LocationContextProvider>
           <RestaurantsContextProvider>
-            <NavigationContainer>
-              <Tab.Navigator screenOptions={createScreenOptions}>
-                <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
-                <Tab.Screen name="Map" component={MapScreen} />
-                <Tab.Screen name="Settings" component={SettingsScreen} />
-              </Tab.Navigator>
-            </NavigationContainer>
+            <Navigation />
           </RestaurantsContextProvider>
         </LocationContextProvider>
       </ThemeProvider>
