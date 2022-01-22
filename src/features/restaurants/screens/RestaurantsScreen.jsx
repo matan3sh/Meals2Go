@@ -5,7 +5,7 @@ import { ActivityIndicator, Colors } from "react-native-paper";
 import { useRestaurants } from "../../../services/restaurants/restaurantsContext";
 import { SafeArea } from "../../../components/utility/SafeArea";
 import RestaurantInfoCard from "../components/RestaurantInfoCard";
-import Search from "../../../components/search/Search";
+import RestaurantsSearch from "../components/RestaurantsSearch";
 
 const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: { padding: 16 },
@@ -32,7 +32,7 @@ const RestaurantsScreen = ({ navigation }) => {
         </LoadingContainer>
       )}
 
-      <Search />
+      <RestaurantsSearch />
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => (
