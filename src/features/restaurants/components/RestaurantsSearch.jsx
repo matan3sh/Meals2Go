@@ -7,7 +7,7 @@ const SearchContainer = styled.View`
   padding: ${({ theme }) => theme.space[3]};
 `;
 
-const RestaurantsSearch = () => {
+const RestaurantsSearch = ({ isFavouritesToggled, onFavouritesToggle }) => {
   const { keyword, search } = useLocation();
   const [searchKeyWord, setSearchKeyWord] = useState(keyword);
 
@@ -18,6 +18,8 @@ const RestaurantsSearch = () => {
   return (
     <SearchContainer>
       <Searchbar
+        icon={isFavouritesToggled ? "heart" : "heart-outline"}
+        onIconPress={onFavouritesToggle}
         placeholder="Search for a location"
         value={searchKeyWord}
         onSubmitEditing={() => search(searchKeyWord)}
