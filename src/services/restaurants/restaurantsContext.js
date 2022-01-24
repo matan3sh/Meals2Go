@@ -2,7 +2,7 @@ import React, { useState, createContext, useEffect, useContext } from "react";
 import { useLocation } from "../location/locationContext";
 import { restaurantsRequest, restaurantsTransform } from "./restaurantsService";
 
-export const RestaurantsContext = createContext();
+const RestaurantsContext = createContext();
 export const useRestaurants = () => useContext(RestaurantsContext);
 
 export const RestaurantsContextProvider = ({ children }) => {
