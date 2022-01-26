@@ -7,7 +7,11 @@ import RestaurantsNavigator from "./RestaurantsNavigator";
 
 import MapScreen from "../../features/map/screens/MapScreen";
 import { SafeArea } from "../../components/utility/SafeArea";
+
 import { useAuthentication } from "../../services/authentication/authenticationContext";
+import { RestaurantsContextProvider } from "../../services/restaurants/restaurantsContext";
+import { LocationContextProvider } from "../../services/location/locationContext";
+import { FavouritesContextProvider } from "../../services/favourites/favouritesContext";
 
 const Tab = createBottomTabNavigator();
 
@@ -48,10 +52,16 @@ const SettingsScreen = () => {
 
 export const AppNavigator = () => {
   return (
-    <Tab.Navigator screenOptions={createScreenOptions}>
-      <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
-      <Tab.Screen name="Map" component={MapScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
-    </Tab.Navigator>
+    <FavouritesContextProvider>
+      <LocationContextProvider>
+        <RestaurantsContextProvider>
+          <Tab.Navigator screenOptions={createScreenOptions}>
+            <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
+            <Tab.Screen name="Map" component={MapScreen} />
+            <Tab.Screen name="Settings" component={SettingsScreen} />
+          </Tab.Navigator>
+        </RestaurantsContextProvider>
+      </LocationContextProvider>
+    </FavouritesContextProvider>
   );
 };
