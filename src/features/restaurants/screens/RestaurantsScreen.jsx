@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
-import { TouchableOpacity, View } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { ActivityIndicator, Colors } from "react-native-paper";
 
 import { useRestaurants } from "../../../services/restaurants/restaurantsContext";
 import { useFavourites } from "../../../services/favourites/favouritesContext";
 
 import { SafeArea } from "../../../components/utility/SafeArea";
+import { FadeInView } from "../../../components/animations/FadeAnimation";
 import FavouritesBar from "../../../components/favourites/FavouritesBar";
 import { RestaurantList } from "../components/RestaurantList";
 import RestaurantInfoCard from "../components/RestaurantInfoCard";
@@ -16,7 +17,7 @@ const Loading = styled(ActivityIndicator)`
   margin-left: -25px;
 `;
 
-const LoadingContainer = styled(View)`
+const LoadingContainer = styled.View`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -54,7 +55,9 @@ const RestaurantsScreen = ({ navigation }) => {
             onPress={() =>
               navigation.navigate("RestaurantDetail", { restaurant: item })
             }>
-            <RestaurantInfoCard restaurant={item} />
+            <FadeInView>
+              <RestaurantInfoCard restaurant={item} />
+            </FadeInView>
           </TouchableOpacity>
         )}
         keyExtractor={(item) => item.name}
